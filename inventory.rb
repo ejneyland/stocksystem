@@ -4,13 +4,8 @@ class Inventory
     def initialize
         @name = name
         @products = []
-        @stocklist = Stocklist.new
+        @stocklist = StockList.new
         @inventory = Inventory.new  
-    end
-
-    def self.welcome
-        @name = "Retro Spares Stock Inventory System"
-        puts "Welcome to the #{@name}!"
     end
 
 end
