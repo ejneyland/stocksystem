@@ -1,4 +1,6 @@
 require_relative './product'
+require_relative './methods'
+
 # require_relative './stocklist'
 
 hcvsac = Product.new("ACVSV6", "Holden", "Commodore VS V6", "Accelerator cable", 1)
@@ -16,7 +18,11 @@ ffxasc = Product.new("XA17260CB", "Ford", "Falcon XA/XC V8", "Speedo Cable", 1)
 
 # cable_stocklist = "Cable Stocklist"
 
-products = [hcvsac, hcvnac, ffelac, ffxdac, hcvlhc, hcvnhc, ffxdhc, ffxbhc, hcvbsc, hchksc, ffxwsc, ffxasc]
+products = [
+    hcvsac, hcvnac, ffelac, ffxdac, 
+    hcvlhc, hcvnhc, ffxdhc, ffxbhc, 
+    hcvbsc, hchksc, ffxwsc, ffxasc
+    ]
 
 # stocklist = Stocklist.new(cable_stocklist, products)
 
@@ -24,16 +30,40 @@ products = [hcvsac, hcvnac, ffelac, ffxdac, hcvlhc, hcvnhc, ffxdhc, ffxbhc, hcvb
 #     puts product
 # end
 
-"Enter in a product ID for more options"
-response = gets.chomp
 
-if response = "#{@id}"
-    puts products.find { |product| product.id == "#{@response}" }
+# puts products.select { |product| product.id }
+# products.find { |product| product.id }
+
+puts "Enter in a product ID for more options"
+response = gets.chomp.upcase
+# puts response
+clear
+if products.find { |product| product.id == response }
+    puts Rainbow(products.find { |product| product.id == response }).yellow
+    puts Rainbow((products.find { |product| product.id == response }).display_quantity).red
 else
-    puts "invalid selection"
+    puts "false"
 end
 
 
 
+
+    # puts (products.find { |product| product.id })
+
+# if response == products.find { |product| product.id }
+#     puts response
+    
+# ["ACVSV6", "ACVNV8", "XB9C799A", "XD9C799A", "92024845", "92027120", "XD2A604B", "XA2853BA", "9947987", "2806048", "XW17260D", "XA17260CB"]
+# puts "correct"
+# puts products.find { |product| product.id == "#{@response}" }
+
+
+# else
+#     puts "invalid selection"
+# end
+
 # ACVSV6
+
+
+
 

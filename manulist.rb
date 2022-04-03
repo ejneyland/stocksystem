@@ -4,12 +4,12 @@ class Manulist
         @manu_products = Array.new(0)
     end
 
-    def add_product(model, quantity)
+    def add_product(id, quantity)
         @manu_products[model] += quantity
     end
 
     def get_products
         return @manu_products
     end
-    
+
 end

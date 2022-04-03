@@ -9,12 +9,12 @@ class Stocklist
         @products = []
     end
 
-    def display_products
-        puts "---------------"
-        puts Rainbow(@name).green
-        puts "-------------------------------------------------------"
-        puts " " + Rainbow("ID").orange + "     Make     Model            Type          " + Rainbow("Qty").red
-        puts "-------------------------------------------------------"
+    def display_stocklist
+        break_line
+        puts " "*23 + "| " + Rainbow(@name).green + " |"
+        break_line
+        puts Rainbow("ID").orange + " "*10 + "Make" + " "*6 + "Model" + " "*15 + "Type" + " "*15 + Rainbow("Qty").red
+        break_line
     end
 
     def self.add_product(id, make, model, type, quantity)
