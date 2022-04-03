@@ -11,7 +11,7 @@ class Product
         @make = make
         @model = model
         @type = type
-        @quantity += quantity
+        @quantity = quantity.to_i
         product = []
     end
 

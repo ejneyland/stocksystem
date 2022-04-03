@@ -5,6 +5,10 @@ def break_line
     puts "-----------------------------------------------------------------"
 end
 
+def smaller_line
+    puts "------------------------------"
+end
+
 def clear
     puts "\e[2J\e[f"
 end

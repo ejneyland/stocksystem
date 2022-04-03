@@ -39,7 +39,7 @@ products = [hcvsac, hcvnac, ffelac, ffxdac, hcvlhc, hcvnhc, ffxdhc, ffxbhc, hcvb
 stocklist = Stocklist.new(cable_stocklist, products)
 
 # add to manufacturing list
-manufacturing_list = Manulist.new
+manulist = Manulist.new(name = "Manufacturing List", items = [])
 
 # welcome message
 welcome
@@ -74,8 +74,9 @@ while true
                     case answer
                     when "yes"
                         puts Rainbow("How many?").green
-                        amount = gets.chomp
+                        amount = gets.chomp.to_i
                         clear
+                        manulist.add_item((products.find { |product| product.id == response }), amount)
                         puts Rainbow("Confirmed. You just added #{amount} of #{response} to the manufacturing list.").green
                         break_line
                         break
@@ -100,6 +101,8 @@ while true
             end
 
         when 2
+            clear
+            manulist.display_manulist
             puts "Here is the manufacturing list"
             # puts manuf_list.each do |item|
             #     puts item
