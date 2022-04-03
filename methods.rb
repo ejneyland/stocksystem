@@ -1,8 +1,14 @@
 require 'tty-prompt'
 require 'rainbow'
 
+def break_line
+    puts "---------------------------------------------------"
+end
+
 def welcome
     @name = "Retro Spares Stock Inventory System"
-    puts "Welcome to the #{@name}!"
+    break_line
+    puts Rainbow("Welcome to the #{@name}!").red
+    break_line
 end
 

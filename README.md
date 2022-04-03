@@ -83,7 +83,7 @@ With the development of this stock inventory application, stock levels are able 
 
 ![Data Flow Diagram](img/dataflow.png)
 
-The identified data structures were: Inventory, Products, Stocklist, Manufacturing List and Invoice
+The identified data structures were: Inventory, Products, Stocklist, Manufacturing List and Invoice. External identities were the App and the User. The functions are represented as circles, with the main ones being view stocklist, view manufacturing list and process invoice.
 
 #### App Skeleton
 
@@ -93,7 +93,7 @@ The identified data structures were: Inventory, Products, Stocklist, Manufacturi
 
 ![Trello Cards](img/trello.png)
 
-I used Trello Cards to keep track of all the tasks and steps required to build this app. I set dates for each task 
+I used Trello Cards to keep track of all the tasks and steps required to build this app. I set dates and colour-coded priority tags for each task for time management purposes, in order to abide by and keep on track with target deadlines. This was done through the creation of a timeline of project milestones, in an order of logical sequence for the construction of my app. I chose not to insert development steps/checklists into my Trello Cards directly, as I personally found it more convenient and accessible to have these steps outlined in pseudocode within my ruby files and in the markdown file. This saved me from switching between my code and my trello project homepage to see what order of steps to follow. In future projects where I am collaborating with multiple people, I will add my steps to the trello tasks so that is readable by others who view it. The steps/checklist for each main task is outlined below. 
 
 #### Option Menu
 
@@ -138,9 +138,36 @@ Steps
 
 ### Installation and App Launch Instructions
 
-1. Download Ruby 
-2. Download bundler gem
-3. Clone repository to your computer
-4. Install the gems used in the application, 'bundle install'
-5. Launch the app through the terminal by entering 'ruby main.rb'
+1. If you don't already, download a terminal emulator such as Visual Studio Code
+   - Mac: https://code.visualstudio.com/docs/setup/mac
+   - Windows: https://code.visualstudio.com/docs/setup/windows
+   - Linux: https://code.visualstudio.com/docs/setup/linux 
+
+2. Download Ruby 
+   - Install instructions: https://www.ruby-lang.org/en/documentation/installation/
+
+3. Download bundler gem
+   - Install instructions: https://bundler.io 
+   - Enter ```gem install bundler``` in terminal
+
+4. Clone repository to your computer
+    - Clone repository instructions: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
+
+5. Install the gems used by the application
+   - Enter ```bundle install``` in terminal
+   - Gems installed should include: rainbow, tty-prompt, json and rspec
+
+6. Launch the app
+   - Enter ```ruby main.rb``` in terminal
+
+--- 
+
+### App Walkthrough
+
+
+
+
+
+
+
 

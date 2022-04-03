@@ -39,31 +39,43 @@ stocklist = Stocklist.new(cable_stocklist, products)
 
 while true
 
+    # Welcome message and menu options displayed to user
     welcome
 
-    selection = TTY::Prompt.new.select("What would you like to do?") do |menu|
+    selection = TTY::Prompt.new.select(Rainbow("What would you like to do?").yellow) do |menu|
         menu.choice("View Stocklist", 1)
         menu.choice("View Manufacturing List", 2)
         menu.choice("Process Invoice", 3)
 
         case selection
-
+        
+        # When user chooses to 'view stocklist', product details are displayed
         when 1
             stocklist.display_products
             products.each do |product|
                 puts product
-                puts "-------------------------------------------------------"
+                break_line
             end
+            # To apply an action to a product, the user specifies the product of interest to reveal further options
             puts "Enter in a product ID for more options"
             response = gets.chomp
             if response = "#{@id}"
                 puts products.find { |prod| prod.id == response }
+                puts "Would you like to add this product to the manufacturing list?"
+                answer = gets.chomp
+                puts "How many?"
+                amount = gets.chomp
+                # add to manufacturing list
+                manuf_list = Manulist.new
             else
                 puts "Invalid selection"
             end
 
         when 2
             puts "Here is the manufacturing list"
+            # puts manuf_list.each do |item|
+            #     puts item
+            # end
         when 3
             puts "Upload an invoice"
         end
