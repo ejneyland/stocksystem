@@ -1,9 +1,9 @@
-require_relative './inventory'
-require_relative './stocklist.rb'
-require_relative './manulist'
-require_relative './invoice'
-require_relative './product'
-require_relative './methods'
+require_relative './invent_classes/inventory'
+require_relative './invent_classes/stocklist.rb'
+require_relative './invent_classes/manulist'
+require_relative './invent_classes/invoice'
+require_relative './invent_classes/product'
+require_relative './invent_methods/methods'
 
 describe Product do
     it 'should return the ID of the product' do

@@ -1,0 +1,46 @@
+[
+    {
+        "invoice number": 1,
+        "invoice_items": [
+        {
+            "product.id": "ACVSV6",
+            "quantity": 3
+        },
+        {
+            "product.id": "92024845",
+            "quantity": 2,
+        },
+        {
+            "product.id": "2806048",
+            "quantity": 1
+        }]   
+    },
+    {
+        "invoice number": 2,
+        "invoice_items": [
+            {
+                "product.id": "XB9C799A",
+                "quantity": 1
+            },
+            {
+                "product.id": "XA2853BA",
+                "quantity": 1,
+            },
+            {
+                "product.id": "XW17260D",
+                "quantity": 2
+            }]
+    },
+    {
+        "invoice number": 3,
+        "invoice_items": [
+            {
+                "product.id": "XD9C799A",
+                "quantity": 5
+            },
+            {
+                "product.id": "10",
+                "quantity": 1,
+            }]
+    }
+]

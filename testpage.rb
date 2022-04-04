@@ -1,6 +1,6 @@
-require_relative './product'
-require_relative './methods'
-require_relative './manulist'
+require_relative './invent_classes/product'
+require_relative './invent_methods/methods'
+require_relative './invent_classes/manulist'
 
 # require_relative './stocklist'
 
