@@ -126,13 +126,18 @@ Steps
 
 Steps
 
-1. Inherit added products and quantities
+1. Create manufacturing list
+2. Create user input to enter items into manufacuring list (id and quantity)
+3. Write a method that updates stocklist quantities (through the attributed value) when manufacturing item is marked 'complete'
+4. Remove item from list upon completion
 
 #### Feature 3: Process Invoice
 
 Steps
 
-1. Updated invoices (post-processing) stored as a hash
+1. Create json files with sample order invoices
+2. Use a hash.map function to locate products based on id and update quantites/generate manufacturing items
+3. Updated invoices (post-processing) stored as a hash in json files
 
 ---
 
@@ -161,20 +166,5 @@ Steps
    - Enter ```ruby main.rb``` in terminal
 
 --- 
-
-### App Walkthrough
-
-
-Welcome Menu
-![Welcome Menu](img/welcome.png)
-
-View Stocklist
-![View Stocklist](img/viewstocklist.png)
-
-View Manufacturing List
-![]()
-
-Process Invoice
-![]()
 
 
