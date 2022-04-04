@@ -7,27 +7,28 @@
 # //////////////////////////////////////////////////
 
 require_relative './invent_classes/inventory'
-require_relative './invent_classes/stocklist.rb'
+require_relative './invent_classes/stocklist'
 require_relative './invent_classes/manulist'
 require_relative './invent_classes/invoice'
 require_relative './invent_classes/product'
 require_relative './invent_methods/methods'
+require_relative './spec/inventory_spec'
 
 require 'tty-prompt'
 require 'rainbow'
 
 # All products and their attribute values added as new products
-hcvsac = Product.new("ACVSV6", "Holden", "Commodore VS V6", "Accelerator Cable", 0)
+hcvsac = Product.new("ACVSV6", "Holden", "Commodore VS V6", "Accelerator Cable", 1)
 hcvnac = Product.new("ACVNV8", "Holden", "Commodore VN V8", "Accelerator Cable", 5)
-ffelac = Product.new("XB9C799A", "Ford", "Falcon EL V6", "Accelerator Cable", 1)
-ffxdac = Product.new("XD9C799A", "Ford", "Falcon XD V6", "Accelerator Cable", 0)
-hcvlhc = Product.new("92024845", "Holden", "Commodore VL", "Handbrake Cable", 1)
+ffelac = Product.new("XB9C799A", "Ford", "Falcon EL V6", "Accelerator Cable", 0)
+ffxdac = Product.new("XD9C799A", "Ford", "Falcon XD V6", "Accelerator Cable", 1)
+hcvlhc = Product.new("92024845", "Holden", "Commodore VL", "Handbrake Cable", 0)
 hcvnhc = Product.new("92027120", "Holden", "Commodore VN", "Handbrake Cable", 1)
-ffxdhc = Product.new("XD2A604B", "Ford", "Falcon XD", "Handbrake Cable", 1)
+ffxdhc = Product.new("XD2A604B", "Ford", "Falcon XD", "Handbrake Cable", 0)
 ffxbhc = Product.new("XA2853BA", "Ford", "Falcon XB", "Handbrake Cable", 1)
-hcvbsc = Product.new("9947987", "Holden", "Commodore VB/VK", "Speedo Cable", 1)
+hcvbsc = Product.new("9947987", "Holden", "Commodore VB/VK", "Speedo Cable", 0)
 hchksc = Product.new("2806048", "Holden", "Commodore HK/HG", "Speedo Cable", 1)
-ffxwsc = Product.new("XW17260D", "Ford", "Falcon XW/XY V8", "Speedo Cable", 1)
+ffxwsc = Product.new("XW17260D", "Ford", "Falcon XW/XY V8", "Speedo Cable", 0)
 ffxasc = Product.new("XA17260CB", "Ford", "Falcon XA/XC V8", "Speedo Cable", 1)
 
 
@@ -39,7 +40,7 @@ products = [hcvsac, hcvnac, ffelac, ffxdac, hcvlhc, hcvnhc, ffxdhc, ffxbhc, hcvb
 cable_stocklist = Stocklist.new(name = "Cable Stocklist", products)
 
 # add to manufacturing list
-manulist = Manulist.new(name = "Manufacturing List", items = [])
+manulist = Manulist.new(name = "Manufacturing List", manu_items = {})
 
 # welcome message
 welcome
@@ -68,7 +69,7 @@ while true
             clear
             if products.find { |product| product.id == response }
                 puts Rainbow(products.find { |product| product.id == response }).yellow
-                puts Rainbow((products.find { |product| product.id == response }).display_quantity).red
+                puts "Quantity: " + "#{products.find { |product| product.id == response }.quantity}"
                 puts Rainbow("Would you like to add this product to the manufacturing list?   yes/no").green
                 while answer = gets.chomp.downcase
                     case answer
@@ -76,19 +77,14 @@ while true
                         puts Rainbow("How many?").green
                         amount = gets.chomp.to_i
                         clear
-                        manulist.add_item(id = (products.find { |product| product.id == response }), quantity = amount)
+                        chosen_product = products.find { |product| product.id == response }
+                        manulist.upsert_manu_item(chosen_product.id, amount)
+
                         puts Rainbow("Confirmed. You just added #{amount} of #{response} to the manufacturing list.").green
                         puts "(hit enter to continue)"
-                        continue = gets.chomp
+                        continue = gets
                         break_line
                         break
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     
                     
                     when "no"
@@ -98,6 +94,8 @@ while true
                         puts "Invalid input. Please answer either yes or no."
                     end
                 end
+            elsif response == ""
+                break
             else
                 puts "Invalid selection"
             end
@@ -105,10 +103,32 @@ while true
         when 2
             clear
             manulist.display_manulist
-            puts "Here is the manufacturing list"
             # puts manuf_list.each do |item|
             #     puts item
             # end
+            puts Rainbow("Enter in a product ID for more options. E.g. ACVSV6").green
+            given_id = gets.chomp.upcase
+
+            puts "Mark as complete?"
+
+            while true
+                complete = TTY::Prompt.new.select(Rainbow("yes/no").yellow) do |menu|
+                    menu.choice("yes", 1)
+                    menu.choice("no", 2)
+                        case complete
+                        when "yes"
+                            new_quantity = manulist.manu_items[given_id]
+                            # p new_quantity
+                            cable_stocklist.update_product_quantity(given_id, new_quantity)
+                            manulist.display_manulist
+                            puts "complete"
+                            break
+                        when "no"
+                            break
+                        end
+                end
+            end
+            
         when 3
             puts "Upload an invoice"
         end

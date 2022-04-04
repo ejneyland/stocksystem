@@ -1,3 +1,5 @@
+require_relative '../invent_classes/product'
+
 require 'tty-prompt'
 require 'rainbow'
 
@@ -6,7 +8,31 @@ class Stocklist
 
     def initialize(name, products)
         @name = name
-        @products = []
+        @products = products
+    end
+
+    def add_product(id, make, model, type, quantity)
+        product = Product.new(id, make, model, type, quantity)
+        @products << product
+    end
+
+    # invoices = JSON.load_file("./sample_invoices.json", symbolize_keys: true)
+
+    def update_product_quantity(id, quantity)
+        p quantity
+        @products = @products.map do |product|
+            p product
+            if product.id == id
+                product.quantity = quantity
+            else
+                product
+            end
+        end
+    end
+
+    def get_quantity_by_id(id)
+        item = @products.find {|product| product.id == id}
+        return item.quantity
     end
 
     def display_stocklist
@@ -15,20 +41,6 @@ class Stocklist
         break_line
         puts Rainbow("ID").orange + " "*10 + "Make" + " "*6 + "Model" + " "*15 + "Type" + " "*15 + Rainbow("Qty").red
         break_line
-    end
-
-    def self.add_product(id, make, model, type, quantity)
-        product = Product.new(id, make, model, type, quantity)
-        @products << product
-    end
-
-    # def update_quantity(id, quantity)
-    #     @quantity += 
-    #     product.quantity = 
-    # end
-
-    def get_product
-        return @products
     end
 
 end
