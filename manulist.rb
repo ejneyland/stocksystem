@@ -23,7 +23,7 @@ class Manulist
         return @items
     end
 
-    def get_products
+    def display_items
         return @items
     end
 

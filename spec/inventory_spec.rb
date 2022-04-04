@@ -55,24 +55,39 @@ end
 
 describe Stocklist do
     it 'should be able to add a product' do
-        id = "ACVSV6"
-        make = "Holden"
-        model = "Commodore VS V6"
-        type = "Accelerator Cable"
-        quantity = 1
+        name = "Cable Stocklist"
+        products = [
+            ["ACVSV6", "Holden", "Commodore VS V6", "Accelerator Cable", 1],
+            ["XB9C799A", "Ford", "Falcon EL V6", "Accelerator Cable", 1]
+        ]
         stocklist = Stocklist.new
         stocklist.add_product(id, make, model, type, quantity)
         # expect(stocklist.get_model(make)).to(eq(model))
     end
     it 'should be able to display a product' do
-        id = "ACVSV6"
-        make = "Holden"
-        model = "Commodore VS V6"
-        type = "Accelerator Cable"
-        quantity = 1
+        name = "Cable Stocklist"
+        products = [
+            ["ACVSV6", "Holden", "Commodore VS V6", "Accelerator Cable", 1],
+            ["XB9C799A", "Ford", "Falcon EL V6", "Accelerator Cable", 1]
+        ]
         stocklist = Stocklist.new
         stocklist.add_product(id, make, model, type, quantity)
         expect(stocklist.get_products().length).to(eq(1))
+    end
+    it 'should be able to update a products quantity' do
+        name = "Cable Stocklist"
+        products = [
+            ["ACVSV6", "Holden", "Commodore VS V6", "Accelerator Cable", 1],
+            ["XB9C799A", "Ford", "Falcon EL V6", "Accelerator Cable", 1]
+        ]
+        stocklist = Stocklist.new(name, products)
+        product.id = "ACVSV6"
+        quantity = 1
+        stocklist.update_quantity(product.id, quantity)
+        product.id = "ACVSV6"
+        quantity = 2
+        stocklist.update_quantity(product.id, quantity)
+        expect(stocklist.product.quantity).to be(3)
     end
 end
 

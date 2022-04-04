@@ -17,10 +17,10 @@ require 'tty-prompt'
 require 'rainbow'
 
 # All products and their attribute values added as new products
-hcvsac = Product.new("ACVSV6", "Holden", "Commodore VS V6", "Accelerator Cable", 1)
-hcvnac = Product.new("ACVNV8", "Holden", "Commodore VN V8", "Accelerator Cable", 1)
+hcvsac = Product.new("ACVSV6", "Holden", "Commodore VS V6", "Accelerator Cable", 0)
+hcvnac = Product.new("ACVNV8", "Holden", "Commodore VN V8", "Accelerator Cable", 5)
 ffelac = Product.new("XB9C799A", "Ford", "Falcon EL V6", "Accelerator Cable", 1)
-ffxdac = Product.new("XD9C799A", "Ford", "Falcon XD V6", "Accelerator Cable", 1)
+ffxdac = Product.new("XD9C799A", "Ford", "Falcon XD V6", "Accelerator Cable", 0)
 hcvlhc = Product.new("92024845", "Holden", "Commodore VL", "Handbrake Cable", 1)
 hcvnhc = Product.new("92027120", "Holden", "Commodore VN", "Handbrake Cable", 1)
 ffxdhc = Product.new("XD2A604B", "Ford", "Falcon XD", "Handbrake Cable", 1)
@@ -32,11 +32,11 @@ ffxasc = Product.new("XA17260CB", "Ford", "Falcon XA/XC V8", "Speedo Cable", 1)
 
 
 # defined input variables for new Stocklist
-cable_stocklist = "Cable Stocklist"
+# cable_stocklist = "Cable Stocklist"
 products = [hcvsac, hcvnac, ffelac, ffxdac, hcvlhc, hcvnhc, ffxdhc, ffxbhc, hcvbsc, hchksc, ffxwsc, ffxasc]
 
 # create main stocklist, given the name 'cable stocklist' and assigned all products
-stocklist = Stocklist.new(cable_stocklist, products)
+cable_stocklist = Stocklist.new(name = "Cable Stocklist", products)
 
 # add to manufacturing list
 manulist = Manulist.new(name = "Manufacturing List", items = [])
@@ -57,7 +57,7 @@ while true
         # When user chooses to 'view stocklist', product details are displayed
         when 1
             clear
-            stocklist.display_stocklist
+            cable_stocklist.display_stocklist
             products.each do |product|
                 puts product.display_product
                 break_line
@@ -76,8 +76,10 @@ while true
                         puts Rainbow("How many?").green
                         amount = gets.chomp.to_i
                         clear
-                        manulist.add_item((products.find { |product| product.id == response }), amount)
+                        manulist.add_item(id = (products.find { |product| product.id == response }), quantity = amount)
                         puts Rainbow("Confirmed. You just added #{amount} of #{response} to the manufacturing list.").green
+                        puts "(hit enter to continue)"
+                        continue = gets.chomp
                         break_line
                         break
                     

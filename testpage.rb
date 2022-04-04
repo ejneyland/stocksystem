@@ -1,5 +1,6 @@
 require_relative './product'
 require_relative './methods'
+require_relative './manulist'
 
 # require_relative './stocklist'
 
@@ -24,45 +25,46 @@ products = [
     hcvbsc, hchksc, ffxwsc, ffxasc
     ]
 
-# stocklist = Stocklist.new(cable_stocklist, products)
+manulist = Manulist.new(name = "Manufacturing List", items = [])
 
-# products.each do |product|
-#     puts product
-# end
-
-
-# puts products.select { |product| product.id }
-# products.find { |product| product.id }
-
-puts "Enter in a product ID for more options"
-response = gets.chomp.upcase
-# puts response
-clear
-if products.find { |product| product.id == response }
-    puts Rainbow(products.find { |product| product.id == response }).yellow
-    puts Rainbow((products.find { |product| product.id == response }).display_quantity).red
-else
-    puts "false"
-end
-
-
-
-
-    # puts (products.find { |product| product.id })
-
-# if response == products.find { |product| product.id }
-#     puts response
+puts Rainbow("Enter in a product ID for more options. E.g. ACVSV6").green
+    response = gets.chomp.upcase
     
-# ["ACVSV6", "ACVNV8", "XB9C799A", "XD9C799A", "92024845", "92027120", "XD2A604B", "XA2853BA", "9947987", "2806048", "XW17260D", "XA17260CB"]
-# puts "correct"
-# puts products.find { |product| product.id == "#{@response}" }
+    if products.find { |product| product.id == response }
+        puts Rainbow(products.find { |product| product.id == response }).yellow
+        puts Rainbow((products.find { |product| product.id == response }).display_quantity).red
 
 
-# else
-#     puts "invalid selection"
-# end
+        puts Rainbow("Would you like to add this product to the manufacturing list?   yes/no").green
+        while answer = gets.chomp.downcase
+            case answer
+            when "yes"
+                puts Rainbow("How many?").green
+                amount = gets.chomp.to_i
+                
 
-# ACVSV6
+                # manulist.add_item((products.find { |product| product.id == response }), amount)
+                manulist.add_item = ManuItem.new(response, amount)
+                puts Rainbow("Confirmed. You just added #{amount} of #{response} to the manufacturing list.").green
+                break_line
+                manulist.display_items
+                break
+         
+
+            when "no"
+                puts "Okay"
+                break
+            else 
+                puts "Invalid input. Please answer either yes or no."
+            end
+        end
+    else
+        puts "Invalid selection"
+    end
+
+
+
+
 
 
 

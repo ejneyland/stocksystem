@@ -165,9 +165,16 @@ Steps
 ### App Walkthrough
 
 
+Welcome Menu
+![Welcome Menu](img/welcome.png)
 
+View Stocklist
+![View Stocklist](img/viewstocklist.png)
 
+View Manufacturing List
+![]()
 
-
+Process Invoice
+![]()
 
 

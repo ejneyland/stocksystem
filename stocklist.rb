@@ -22,6 +22,11 @@ class Stocklist
         @products << product
     end
 
+    # def update_quantity(id, quantity)
+    #     @quantity += 
+    #     product.quantity = 
+    # end
+
     def get_product
         return @products
     end
